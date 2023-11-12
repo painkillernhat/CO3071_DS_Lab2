@@ -1,0 +1,409 @@
+[
+    {
+        "label": "SparkSession",
+        "importPath": "pyspark.sql",
+        "description": "pyspark.sql",
+        "isExtraImport": true,
+        "detail": "pyspark.sql",
+        "documentation": {}
+    },
+    {
+        "label": "SparkSession",
+        "importPath": "pyspark.sql",
+        "description": "pyspark.sql",
+        "isExtraImport": true,
+        "detail": "pyspark.sql",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pytz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytz",
+        "description": "pytz",
+        "detail": "pytz",
+        "documentation": {}
+    },
+    {
+        "label": "SparkConf",
+        "importPath": "pyspark",
+        "description": "pyspark",
+        "isExtraImport": true,
+        "detail": "pyspark",
+        "documentation": {}
+    },
+    {
+        "label": "SparkContext",
+        "importPath": "pyspark",
+        "description": "pyspark",
+        "isExtraImport": true,
+        "detail": "pyspark",
+        "documentation": {}
+    },
+    {
+        "label": "Statistics",
+        "importPath": "pyspark.mllib.stat",
+        "description": "pyspark.mllib.stat",
+        "isExtraImport": true,
+        "detail": "pyspark.mllib.stat",
+        "documentation": {}
+    },
+    {
+        "label": "Vectors",
+        "importPath": "pyspark.mllib.linalg",
+        "description": "pyspark.mllib.linalg",
+        "isExtraImport": true,
+        "detail": "pyspark.mllib.linalg",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "filterRecords",
+        "kind": 2,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "def filterRecords(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\n# convert time format\ndef convert(line):\n    fields = line.split(\" \")\n    inputData = fields[3] + \" \" + fields[4]\n    timeFormat = \"[%d/%b/%Y:%H:%M:%S %z]\"\n    try:",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "convert",
+        "kind": 2,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "def convert(line):\n    fields = line.split(\" \")\n    inputData = fields[3] + \" \" + fields[4]\n    timeFormat = \"[%d/%b/%Y:%H:%M:%S %z]\"\n    try:\n        timeStamp = datetime.strptime(inputData, timeFormat).replace(tzinfo=pytz.UTC).timestamp()\n        return timeStamp\n    except ValueError:\n        return None\n# filter correct records",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "filterRecordsFail",
+        "kind": 2,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "def filterRecordsFail(line):\n    return not filterRecords(line)\n# filter incorrect records\nfilterFail = data.filter(filterRecordsFail)\nfilterFail = filterFail.filter(lambda x: convert(x) is not None)\nsortedFail = filterFail.sortBy(convert)\nprint(\"\\nTop 10 incorrect records:\")\nfor record in sortedFail.take(10):\n    print(record)\n# stop spark session",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "spark",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "spark = SparkSession.builder.appName(\"Log Processing\").getOrCreate()\ndata = spark.sparkContext.textFile(\"FPT-2018-12-02.log\")\n# filter correct records\ndef filterRecords(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\n# convert time format\ndef convert(line):\n    fields = line.split(\" \")",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "data = spark.sparkContext.textFile(\"FPT-2018-12-02.log\")\n# filter correct records\ndef filterRecords(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\n# convert time format\ndef convert(line):\n    fields = line.split(\" \")\n    inputData = fields[3] + \" \" + fields[4]",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "filterData",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "filterData = data.filter(filterRecords)\nfilterData = filterData.filter(lambda x: convert(x) is not None)\nsortedData = filterData.sortBy(convert)\nprint(\"Top 10 correct records:\")\nfor record in sortedData.take(10):\n    print(record)\n# filter incorrect records\ndef filterRecordsFail(line):\n    return not filterRecords(line)\n# filter incorrect records",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "filterData",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "filterData = filterData.filter(lambda x: convert(x) is not None)\nsortedData = filterData.sortBy(convert)\nprint(\"Top 10 correct records:\")\nfor record in sortedData.take(10):\n    print(record)\n# filter incorrect records\ndef filterRecordsFail(line):\n    return not filterRecords(line)\n# filter incorrect records\nfilterFail = data.filter(filterRecordsFail)",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "sortedData",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "sortedData = filterData.sortBy(convert)\nprint(\"Top 10 correct records:\")\nfor record in sortedData.take(10):\n    print(record)\n# filter incorrect records\ndef filterRecordsFail(line):\n    return not filterRecords(line)\n# filter incorrect records\nfilterFail = data.filter(filterRecordsFail)\nfilterFail = filterFail.filter(lambda x: convert(x) is not None)",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "filterFail",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "filterFail = data.filter(filterRecordsFail)\nfilterFail = filterFail.filter(lambda x: convert(x) is not None)\nsortedFail = filterFail.sortBy(convert)\nprint(\"\\nTop 10 incorrect records:\")\nfor record in sortedFail.take(10):\n    print(record)\n# stop spark session\nspark.stop()",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "filterFail",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "filterFail = filterFail.filter(lambda x: convert(x) is not None)\nsortedFail = filterFail.sortBy(convert)\nprint(\"\\nTop 10 incorrect records:\")\nfor record in sortedFail.take(10):\n    print(record)\n# stop spark session\nspark.stop()",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "sortedFail",
+        "kind": 5,
+        "importPath": "task1",
+        "description": "task1",
+        "peekOfCode": "sortedFail = filterFail.sortBy(convert)\nprint(\"\\nTop 10 incorrect records:\")\nfor record in sortedFail.take(10):\n    print(record)\n# stop spark session\nspark.stop()",
+        "detail": "task1",
+        "documentation": {}
+    },
+    {
+        "label": "is_valid_record",
+        "kind": 2,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "def is_valid_record(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\nvalid_log_data = log_data.filter(is_valid_record)\n# classify service\ndef get_service_type(line):\n    content_name = line.split(\" \")[5]\n    if content_name.endswith(\".mpd\") or content_name.endswith(\".m3u8\"):\n        return \"HLS\"",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "get_service_type",
+        "kind": 2,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "def get_service_type(line):\n    content_name = line.split(\" \")[5]\n    if content_name.endswith(\".mpd\") or content_name.endswith(\".m3u8\"):\n        return \"HLS\"\n    elif content_name.endswith(\".dash\") or content_name.endswith(\".ts\"):\n        return \"MPEG-DASH\"\n    else:\n        return \"Web Service\"\nclassified_log_data = valid_log_data.map(lambda line: (get_service_type(line), 1))\nservice_counts = classified_log_data.reduceByKey(lambda a, b: a + b)",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "extract_ip",
+        "kind": 2,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "def extract_ip(line):\n    ip = line.split(\" \")[1]\n    return ip\nunique_ips = valid_log_data.map(extract_ip).distinct()\n# load IP information\nip_info_data = spark_context.textFile(\"IPDict.csv\")\nip_info_dict = ip_info_data.map(lambda line: (line.split(\",\")[0], (line.split(\",\")[1], line.split(\",\")[2], line.split(\",\")[3]))).collectAsMap()\nip_info_broadcast = spark_context.broadcast(ip_info_dict)\n# enrich log record\ndef enrich_record(line):",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "enrich_record",
+        "kind": 2,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "def enrich_record(line):\n    fields = line.split(\" \")\n    ip = fields[1]\n    additional_info = ip_info_broadcast.value.get(ip, (\"Unknown\", \"Unknown\", \"Unknown\"))\n    latency = float(fields[0])\n    city = additional_info[1]\n    content_size = int(fields[len(fields) - 1])\n    return (ip, additional_info, city, latency, fields[5], content_size)\nenriched_log_data = valid_log_data.map(enrich_record)\n# unique ISPs",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "spark_session",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "spark_session = SparkSession.builder.appName(\"LogAnalysis\").getOrCreate()\nspark_context = spark_session.sparkContext\nlog_data = spark_context.textFile(\"FPT-2018-12-02.log\")\ndef is_valid_record(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\nvalid_log_data = log_data.filter(is_valid_record)\n# classify service\ndef get_service_type(line):",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "spark_context",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "spark_context = spark_session.sparkContext\nlog_data = spark_context.textFile(\"FPT-2018-12-02.log\")\ndef is_valid_record(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\nvalid_log_data = log_data.filter(is_valid_record)\n# classify service\ndef get_service_type(line):\n    content_name = line.split(\" \")[5]",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "log_data",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "log_data = spark_context.textFile(\"FPT-2018-12-02.log\")\ndef is_valid_record(line):\n    fields = line.split(\" \")\n    criteria = len(fields) == 7 and float(fields[0]) >= 0 and fields[6].isdigit() and int(fields[6]) > 0 and fields[2] != \"-\"\n    return criteria\nvalid_log_data = log_data.filter(is_valid_record)\n# classify service\ndef get_service_type(line):\n    content_name = line.split(\" \")[5]\n    if content_name.endswith(\".mpd\") or content_name.endswith(\".m3u8\"):",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "valid_log_data",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "valid_log_data = log_data.filter(is_valid_record)\n# classify service\ndef get_service_type(line):\n    content_name = line.split(\" \")[5]\n    if content_name.endswith(\".mpd\") or content_name.endswith(\".m3u8\"):\n        return \"HLS\"\n    elif content_name.endswith(\".dash\") or content_name.endswith(\".ts\"):\n        return \"MPEG-DASH\"\n    else:\n        return \"Web Service\"",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "classified_log_data",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "classified_log_data = valid_log_data.map(lambda line: (get_service_type(line), 1))\nservice_counts = classified_log_data.reduceByKey(lambda a, b: a + b)\nfor service, count in service_counts.collect():\n    print(f\"{service}: {count} records\")\n# extract IP\ndef extract_ip(line):\n    ip = line.split(\" \")[1]\n    return ip\nunique_ips = valid_log_data.map(extract_ip).distinct()\n# load IP information",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "service_counts",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "service_counts = classified_log_data.reduceByKey(lambda a, b: a + b)\nfor service, count in service_counts.collect():\n    print(f\"{service}: {count} records\")\n# extract IP\ndef extract_ip(line):\n    ip = line.split(\" \")[1]\n    return ip\nunique_ips = valid_log_data.map(extract_ip).distinct()\n# load IP information\nip_info_data = spark_context.textFile(\"IPDict.csv\")",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "unique_ips",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "unique_ips = valid_log_data.map(extract_ip).distinct()\n# load IP information\nip_info_data = spark_context.textFile(\"IPDict.csv\")\nip_info_dict = ip_info_data.map(lambda line: (line.split(\",\")[0], (line.split(\",\")[1], line.split(\",\")[2], line.split(\",\")[3]))).collectAsMap()\nip_info_broadcast = spark_context.broadcast(ip_info_dict)\n# enrich log record\ndef enrich_record(line):\n    fields = line.split(\" \")\n    ip = fields[1]\n    additional_info = ip_info_broadcast.value.get(ip, (\"Unknown\", \"Unknown\", \"Unknown\"))",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "ip_info_data",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "ip_info_data = spark_context.textFile(\"IPDict.csv\")\nip_info_dict = ip_info_data.map(lambda line: (line.split(\",\")[0], (line.split(\",\")[1], line.split(\",\")[2], line.split(\",\")[3]))).collectAsMap()\nip_info_broadcast = spark_context.broadcast(ip_info_dict)\n# enrich log record\ndef enrich_record(line):\n    fields = line.split(\" \")\n    ip = fields[1]\n    additional_info = ip_info_broadcast.value.get(ip, (\"Unknown\", \"Unknown\", \"Unknown\"))\n    latency = float(fields[0])\n    city = additional_info[1]",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "ip_info_dict",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "ip_info_dict = ip_info_data.map(lambda line: (line.split(\",\")[0], (line.split(\",\")[1], line.split(\",\")[2], line.split(\",\")[3]))).collectAsMap()\nip_info_broadcast = spark_context.broadcast(ip_info_dict)\n# enrich log record\ndef enrich_record(line):\n    fields = line.split(\" \")\n    ip = fields[1]\n    additional_info = ip_info_broadcast.value.get(ip, (\"Unknown\", \"Unknown\", \"Unknown\"))\n    latency = float(fields[0])\n    city = additional_info[1]\n    content_size = int(fields[len(fields) - 1])",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "ip_info_broadcast",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "ip_info_broadcast = spark_context.broadcast(ip_info_dict)\n# enrich log record\ndef enrich_record(line):\n    fields = line.split(\" \")\n    ip = fields[1]\n    additional_info = ip_info_broadcast.value.get(ip, (\"Unknown\", \"Unknown\", \"Unknown\"))\n    latency = float(fields[0])\n    city = additional_info[1]\n    content_size = int(fields[len(fields) - 1])\n    return (ip, additional_info, city, latency, fields[5], content_size)",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "enriched_log_data",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "enriched_log_data = valid_log_data.map(enrich_record)\n# unique ISPs\nunique_isps = enriched_log_data.map(lambda log: log[1][2]).distinct().collect()\nprint(f\"Number of unique ISPs: {len(unique_isps)}\")\n# records from Ho Chi Minh City\nhcm_records = enriched_log_data.filter(lambda log: log[2] == \"Ho Chi Minh City\")\nprint(f\"Number of records from Ho Chi Minh City: {hcm_records.count()}\")\n# traffic from Hanoi\nhanoi_traffic = enriched_log_data.filter(lambda log: log[2] == \"Hanoi\").map(lambda log: log[5]).reduce(lambda a, b: a + b)\nprint(f\"Total traffic from Hanoi: {hanoi_traffic}\")",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "unique_isps",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "unique_isps = enriched_log_data.map(lambda log: log[1][2]).distinct().collect()\nprint(f\"Number of unique ISPs: {len(unique_isps)}\")\n# records from Ho Chi Minh City\nhcm_records = enriched_log_data.filter(lambda log: log[2] == \"Ho Chi Minh City\")\nprint(f\"Number of records from Ho Chi Minh City: {hcm_records.count()}\")\n# traffic from Hanoi\nhanoi_traffic = enriched_log_data.filter(lambda log: log[2] == \"Hanoi\").map(lambda log: log[5]).reduce(lambda a, b: a + b)\nprint(f\"Total traffic from Hanoi: {hanoi_traffic}\")\n# latency statistics\nlatencies = enriched_log_data.map(lambda log: log[3])",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "hcm_records",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "hcm_records = enriched_log_data.filter(lambda log: log[2] == \"Ho Chi Minh City\")\nprint(f\"Number of records from Ho Chi Minh City: {hcm_records.count()}\")\n# traffic from Hanoi\nhanoi_traffic = enriched_log_data.filter(lambda log: log[2] == \"Hanoi\").map(lambda log: log[5]).reduce(lambda a, b: a + b)\nprint(f\"Total traffic from Hanoi: {hanoi_traffic}\")\n# latency statistics\nlatencies = enriched_log_data.map(lambda log: log[3])\nlatencies_vector = latencies.map(lambda latency: Vectors.dense(latency))\nlatency_stats = Statistics.colStats(latencies_vector)\nprint(f\"Mean Latency: {latency_stats.mean()[0]}\")",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "hanoi_traffic",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "hanoi_traffic = enriched_log_data.filter(lambda log: log[2] == \"Hanoi\").map(lambda log: log[5]).reduce(lambda a, b: a + b)\nprint(f\"Total traffic from Hanoi: {hanoi_traffic}\")\n# latency statistics\nlatencies = enriched_log_data.map(lambda log: log[3])\nlatencies_vector = latencies.map(lambda latency: Vectors.dense(latency))\nlatency_stats = Statistics.colStats(latencies_vector)\nprint(f\"Mean Latency: {latency_stats.mean()[0]}\")\nprint(f\"Maximum Latency: {latency_stats.max()[0]}\")\nprint(f\"Minimum Latency: {latency_stats.min()[0]}\")\n# Additional logic for median, maximum, and second maximum latency",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "latencies",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "latencies = enriched_log_data.map(lambda log: log[3])\nlatencies_vector = latencies.map(lambda latency: Vectors.dense(latency))\nlatency_stats = Statistics.colStats(latencies_vector)\nprint(f\"Mean Latency: {latency_stats.mean()[0]}\")\nprint(f\"Maximum Latency: {latency_stats.max()[0]}\")\nprint(f\"Minimum Latency: {latency_stats.min()[0]}\")\n# Additional logic for median, maximum, and second maximum latency\nsorted_latencies = latencies.sortBy(lambda latency: latency).collect()\nmedian_index = int((len(sorted_latencies) + 1) / 2) - 1\nmedian_latency = sorted_latencies[median_index]",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "latencies_vector",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "latencies_vector = latencies.map(lambda latency: Vectors.dense(latency))\nlatency_stats = Statistics.colStats(latencies_vector)\nprint(f\"Mean Latency: {latency_stats.mean()[0]}\")\nprint(f\"Maximum Latency: {latency_stats.max()[0]}\")\nprint(f\"Minimum Latency: {latency_stats.min()[0]}\")\n# Additional logic for median, maximum, and second maximum latency\nsorted_latencies = latencies.sortBy(lambda latency: latency).collect()\nmedian_index = int((len(sorted_latencies) + 1) / 2) - 1\nmedian_latency = sorted_latencies[median_index]\nprint(f\"Median Latency: {median_latency}\")",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "latency_stats",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "latency_stats = Statistics.colStats(latencies_vector)\nprint(f\"Mean Latency: {latency_stats.mean()[0]}\")\nprint(f\"Maximum Latency: {latency_stats.max()[0]}\")\nprint(f\"Minimum Latency: {latency_stats.min()[0]}\")\n# Additional logic for median, maximum, and second maximum latency\nsorted_latencies = latencies.sortBy(lambda latency: latency).collect()\nmedian_index = int((len(sorted_latencies) + 1) / 2) - 1\nmedian_latency = sorted_latencies[median_index]\nprint(f\"Median Latency: {median_latency}\")\nmax_latency_sorted_list = sorted_latencies[-1]",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "sorted_latencies",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "sorted_latencies = latencies.sortBy(lambda latency: latency).collect()\nmedian_index = int((len(sorted_latencies) + 1) / 2) - 1\nmedian_latency = sorted_latencies[median_index]\nprint(f\"Median Latency: {median_latency}\")\nmax_latency_sorted_list = sorted_latencies[-1]\nprint(f\"Maximum Latency (sorted list): {max_latency_sorted_list}\")\nsecond_max_latency = sorted_latencies[-2]\nprint(f\"Second Maximum Latency: {second_max_latency}\")\nspark_session.stop()",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "median_index",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "median_index = int((len(sorted_latencies) + 1) / 2) - 1\nmedian_latency = sorted_latencies[median_index]\nprint(f\"Median Latency: {median_latency}\")\nmax_latency_sorted_list = sorted_latencies[-1]\nprint(f\"Maximum Latency (sorted list): {max_latency_sorted_list}\")\nsecond_max_latency = sorted_latencies[-2]\nprint(f\"Second Maximum Latency: {second_max_latency}\")\nspark_session.stop()",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "median_latency",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "median_latency = sorted_latencies[median_index]\nprint(f\"Median Latency: {median_latency}\")\nmax_latency_sorted_list = sorted_latencies[-1]\nprint(f\"Maximum Latency (sorted list): {max_latency_sorted_list}\")\nsecond_max_latency = sorted_latencies[-2]\nprint(f\"Second Maximum Latency: {second_max_latency}\")\nspark_session.stop()",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "max_latency_sorted_list",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "max_latency_sorted_list = sorted_latencies[-1]\nprint(f\"Maximum Latency (sorted list): {max_latency_sorted_list}\")\nsecond_max_latency = sorted_latencies[-2]\nprint(f\"Second Maximum Latency: {second_max_latency}\")\nspark_session.stop()",
+        "detail": "task2",
+        "documentation": {}
+    },
+    {
+        "label": "second_max_latency",
+        "kind": 5,
+        "importPath": "task2",
+        "description": "task2",
+        "peekOfCode": "second_max_latency = sorted_latencies[-2]\nprint(f\"Second Maximum Latency: {second_max_latency}\")\nspark_session.stop()",
+        "detail": "task2",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,27 @@
+CodeCache: size=131072Kb used=12638Kb max_used=12650Kb free=118433Kb
+ bounds [0x000000010a9e0000, 0x000000010b650000, 0x00000001129e0000]
+ total_blobs=5218 nmethods=4391 adapters=740
+ compilation: disabled (not enough contiguous free space left)
+Top 10 correct records:
+0.000 58.187.29.147 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_ns_hd/prod_kplus_ns_hd.isml/events(1541466558)/dash/prod_kplus_ns_hd-audio_vie=56000-49397873671168.dash 28401
+0.055 113.23.26.76 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_1_hd/prod_kplus_1_hd.isml/events(1541466464)/dash/prod_kplus_1_hd-video=2499968-926210122800.dash 1265928
+0.000 118.69.60.62 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_pm_hd/prod_kplus_pm_hd.isml/stb.mpd 39902
+0.000 42.118.29.197 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_ns_hd/prod_kplus_ns_hd.isml/prod_kplus_ns_hd.mpd 40102
+0.000 14.231.34.1 HIT [02/Dec/2018:00:00:00 +0700] /cc8c96ca2e6b3aa3465a5e2d383c8e011543687445/box/_definst_/vtv3-high.m3u8 323
+0.001 42.113.129.241 HIT [02/Dec/2018:00:00:00 +0700] /d053d51fe6c3935d4c25908089b7c4961543692607/ndvr/vtv3/_definst_/20181201/vtv3-high-20181201175215-611181.ts 742224
+0.002 14.244.239.143 HIT [02/Dec/2018:00:00:00 +0700] /8d7863dc41865b32054cd8478430fb521543689560/box/_definst_/vtv2-high-2063449.ts 760272
+0.000 14.229.126.144 HIT [02/Dec/2018:00:00:00 +0700] /8c6bebd4edd78750291593f1756e861a1543686153/box/_definst_/vtv6-high.m3u8 323
+0.000 113.22.7.224 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_ns_hd/prod_kplus_ns_hd.isml/events(1541466558)/dash/prod_kplus_ns_hd-audio_vie=56000-49397873798144.dash 28840
+0.000 113.179.83.143 HIT [02/Dec/2018:00:00:00 +0700] /98caef0ff9b853515fe1e3858397badf1543685819/box/_definst_/vtv6-high.m3u8 323
+
+Top 10 incorrect records:
+0.000 123.18.156.7 - [02/Dec/2018:00:00:00 +0700] /b74394d1bd14f1afb0c4be5b8c4c22481543619685/box/_definst_/vtv1-high.m3u8 166
+0.000 113.161.6.128 - [02/Dec/2018:00:00:00 +0700] /4176f0256a9c8b9d5cf6854e27ade7461543681587/box/_definst_/vtv3-high.m3u8 166
+0.000 42.115.220.10 HIT [02/Dec/2018:00:00:00 +0700] /live/prod_kplus_1_hd/prod_kplus_1_hd.isml/stb.mpd 0
+0.000 27.3.65.112 - [02/Dec/2018:00:00:00 +0700] /1c68cc3b620f13797a8dc7d60ea8bec41543571805/box/_definst_/vtv3-high.m3u8 166
+0.000 113.162.4.228 - [02/Dec/2018:00:00:00 +0700] /73f2e7f5a352dc48bc3f46ccfe155a701543617776/box/_definst_/vtv3-high.m3u8 166
+0.000 14.181.24.168 - [02/Dec/2018:00:00:00 +0700] /9f9acfb050af241723b7576ac79879d81543634619/box/_definst_/vtv3-high.m3u8 166
+0.000 14.228.49.147 - [02/Dec/2018:00:00:00 +0700] /ab65523b72105c0ad027936fddc3c5ec1543562106/box/_definst_/vtv3-high.m3u8 166
+0.000 123.17.19.243 - [02/Dec/2018:00:00:00 +0700] /45cb0917fe18ec62f2c5af70a9e992b61543632020/box/_definst_/vtv3-high.m3u8 166
+0.000 14.189.182.247 - [02/Dec/2018:00:00:00 +0700] /e987966426fe66700b9a0775a08f7c2d1543548337/box/_definst_/vtv3-high.m3u8 166
+0.000 14.165.116.89 - [02/Dec/2018:00:00:00 +0700] /6ab3ab2fcc3cb07a5a9f6cdb7784da9a1543675624/box/_definst_/vtv1-high.m3u8 166

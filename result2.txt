@@ -1,0 +1,16 @@
+CodeCache: size=131072Kb used=16753Kb max_used=16768Kb free=114318Kb
+ bounds [0x00000001071e0000, 0x0000000108260000, 0x000000010f1e0000]
+ total_blobs=7137 nmethods=6236 adapters=814
+ compilation: disabled (not enough contiguous free space left)
+MPEG-DASH: 826313 records
+Web Service: 13976 records
+HLS: 462938 records
+Number of unique ISPs: 125
+Number of records from Ho Chi Minh City: 217212
+Total traffic from Hanoi: 204245300091
+Mean Latency: 0.1516318983569242
+Maximum Latency: 199.658
+Minimum Latency: 0.0
+Median Latency: 0.0
+Maximum Latency (sorted list): 199.658
+Second Maximum Latency: 119.467
